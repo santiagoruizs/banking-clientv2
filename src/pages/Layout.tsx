@@ -2,14 +2,18 @@ import Header from '@/components/ui/Header'
 import { Toaster } from '@/components/ui/toaster'
 
 import {useState, useEffect} from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const Layout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const navigate = useNavigate()
   useEffect(() => {   
+  
     if (localStorage.getItem('isLoggedIn') === 'true') {
       setIsLoggedIn(true);
+      navigate('/account')
+    }else{
+      navigate('/login')
     }
   }, []);
   return (

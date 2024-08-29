@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import Layout from './pages/Layout';
 import { ThemeProvider } from './components/ui/theme-provider';
 
+
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
       <Route path="/account" element={<Account />} >

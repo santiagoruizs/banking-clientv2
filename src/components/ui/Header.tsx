@@ -30,13 +30,13 @@ const Header: React.FC<HeaderProps> = ({isLoggedIn,setIsLoggedIn}) => {
   }
   }
   return (
-    <div className='w-full flex-initial flex flex-row justify-between items-center h-20 pr-10 pl-10'>
+    <div className='w-full flex-initial flex flex-row justify-between items-center h-20 px-5'>
         <Sun className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 cursor-pointer" onClick={() => setTheme("dark")}/>
         <Moon className="absolute h-[1.5rem] w-[1.5rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 cursor-pointer" onClick={() => setTheme("light")}/>
-        <Link to='/account'><button className='border-none  rounded-xl text-xl font-bold select-none'>SR Bank</button></Link>
+        <Link to='/account'><button className='border-none rounded-xl text-xl font-bold select-none'>SR Bank</button></Link>
         <Menubar className='rounded-full border-none'>
           <MenubarMenu>
-            <MenubarTrigger className='rounded-full border-none '><CircleUserRound className='h-[1.5rem] w-[1.5rem] cursor-pointer'/></MenubarTrigger>
+            <MenubarTrigger className='rounded-full border-none m-0 p-0'><CircleUserRound className='h-[1.5rem] w-[1.5rem] cursor-pointer m-0'/></MenubarTrigger>
             <MenubarContent>
               {!isLoggedIn && <Link to='/login'><MenubarItem >LogIn</MenubarItem></Link>}
               {isLoggedIn &&<MenubarItem onClick={handleLogOut}>LogOut</MenubarItem>}

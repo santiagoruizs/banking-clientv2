@@ -62,7 +62,7 @@ const Account = () => {
     }, [update])
 
   return (
-    <div className='w-[600px] p-10'>
+    <div className='w-11/12 sm:w-[600px] p-10'>
       <Sheet >
       <h3 className='text-2xl mb-5'>Welcome back <strong>{username}</strong></h3>
       <SheetTrigger className='w-full text-left'>
