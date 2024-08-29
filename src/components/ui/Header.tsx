@@ -10,8 +10,11 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar"
-
-const Header = ({isLoggedIn,setIsLoggedIn}) => {
+interface HeaderProps {
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const Header: React.FC<HeaderProps> = ({isLoggedIn,setIsLoggedIn}) => {
   const { setTheme } = useTheme()
   const navigate = useNavigate();
   // const [theme, setTheme] = useState('light')

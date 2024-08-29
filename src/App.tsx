@@ -1,6 +1,6 @@
 
 import './App.css'
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, useNavigate } from 'react-router-dom';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Account from './pages/Account';
 import Transfer from './pages/Transfer';
 import Deposit from './pages/Deposit';
