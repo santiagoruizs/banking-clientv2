@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
-
+import { LoaderCircle } from 'lucide-react';
 
 
 const Signup = () => {
@@ -20,10 +20,12 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [email, setEmail] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const { toast } = useToast()
 
   const handleSignup = async (event: FormEvent<HTMLFormElement>) => {
+    setIsLoading(true)
     event.preventDefault();
     if (password === confirmPassword){
       const payload = {username, email, password}
@@ -44,7 +46,9 @@ const Signup = () => {
           const data = await response.json();
           console.log('Response data:', data);
           navigate('/login')
+          setIsLoading(false)
       } catch (error) {
+        setIsLoading(false)
         console.error('Error:', error);
       }
     }else{
@@ -53,6 +57,8 @@ const Signup = () => {
         title: "Sign In",
         description: "Passwords do not match",
       })
+      setIsLoading(false)
+
     }
     
   }
@@ -67,23 +73,25 @@ const Signup = () => {
         <form onSubmit={e => handleSignup(e)}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5 items-start">
-              <Input id="username" placeholder="Username" type="text" value ={username} onChange={(e) => setUsername(e.target.value)}/>
+              <Input required id="username" placeholder="Username" type="text" value ={username} onChange={(e) => setUsername(e.target.value)}/>
             </div>
             <div className="flex flex-col space-y-1.5 items-start">
-              <Input id="email" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <Input required id="email" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
             <div className="flex flex-col space-y-1.5 items-start">
-              <Input id="password" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <Input required id="password" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div className="flex flex-col space-y-1.5 items-start">
-              <Input id="password" placeholder="Confirm Password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+              <Input required id="password" placeholder="Confirm Password" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
-            <Button>Create Account</Button>
+            <Button disabled={isLoading || !username || !email || !password || !confirmPassword }>
+              {isLoading && <LoaderCircle className="h-4 w-4 mx-2 animate-spin"/>}
+             {!isLoading && "Create Account"}</Button>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex justify-center">
-        <Link to='/login'>Alredy have an Account?</Link>
+        <Link to='/login'>Already have an Account?</Link>
       </CardFooter>
     </Card>
     </div>

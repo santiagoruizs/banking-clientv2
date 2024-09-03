@@ -5,14 +5,17 @@ import { useOutletContext } from 'react-router-dom'
 import { useState } from 'react'
 import { transferFunds } from '../api/api'
 import { useToast } from '@/components/ui/use-toast'
+import { LoaderCircle } from 'lucide-react';
 
 const Transfer = () => {
   const [ammount, setAmmount] = useState('')
   const [toAccount, setToAccount] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
   const { setUpdate } = useOutletContext<any>()
   
   const handleTransfer = async() => {
+    setIsLoading(true)
     const id = localStorage.getItem('userId')||''
     const parsedID:number|null = parseInt(id)
     const parsedAmmount = parseFloat(ammount)
@@ -25,7 +28,7 @@ const Transfer = () => {
         description: data.message,
       })
     }else{
-      toast({
+      toast({ 
         variant:"destructive",
         title: "Deposit",
         description: data.message,
@@ -36,7 +39,7 @@ const Transfer = () => {
     setUpdate((prev:boolean) => !prev)
     }
     
-
+    setIsLoading(false)
   }
   return (
     <Card className="w-full">
@@ -54,7 +57,10 @@ const Transfer = () => {
             <Input id="quantity" placeholder="Quantity" type="number" value={ammount} onChange={(e) => setAmmount(e.target.value)}/>
           </div>
 
-          <Button disabled = {ammount === '' || toAccount === ''} onClick={handleTransfer}>Transfer</Button>
+          <Button disabled = {ammount === '' || toAccount === '' || isLoading} onClick={handleTransfer}>
+          {isLoading && <LoaderCircle className="h-4 w-4 mx-2 animate-spin"/>}
+          {!isLoading && "Transfer"}
+          </Button>
         </div>
     </CardContent>
   </Card>

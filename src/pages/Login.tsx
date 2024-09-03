@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { LoaderCircle } from 'lucide-react';
 
 import { Link } from "react-router-dom";
 import { FormEvent, useState } from "react";
@@ -19,10 +20,11 @@ const Login = () => {
   const { setIsLoggedIn } = useOutletContext<any>();
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
-    
+    setIsLoading(true)
     event.preventDefault();
     
     const payload = {username, password}
@@ -45,7 +47,9 @@ const Login = () => {
           title: "Log In",
           description: data.message,
         })
+          setIsLoading(false)
           throw new Error(data.message);
+          
         }
         
         console.log('Response data:', data);
@@ -57,10 +61,12 @@ const Login = () => {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', data.username);
         localStorage.setItem('userId', data.id);
+        setIsLoading(false)
         navigate('/account')
 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error)
+      setIsLoading(false)
     }
   }
   return (
@@ -81,7 +87,10 @@ const Login = () => {
                 {/* <Label htmlFor="password">Password</Label> */}
                 <Input id="password" placeholder="Password" type="password" onChange={e => setPassword(e.target.value)}/>
             </div>
-            <Button>LogIn</Button>
+            <Button disabled={isLoading || !username || !password}>
+              {isLoading && <LoaderCircle className="h-4 w-4 mx-2 animate-spin"/>}
+             {!isLoading && "LogIn"}
+              </Button>
           </div>
         </form>
       </CardContent>
