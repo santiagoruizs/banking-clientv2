@@ -46,7 +46,7 @@ const Widthdraw = () => {
 
   }
   return (
-    <Card className="w-full">
+    <Card className="w-full p-5">
     <CardHeader>
       <CardTitle >Widthdraw</CardTitle>
     </CardHeader>

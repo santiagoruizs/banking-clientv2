@@ -62,11 +62,11 @@ const Account = () => {
     }, [update])
 
   return (
-    <div className='w-11/12 sm:w-[600px] p-10 pt-[100px]'>
+    <div className='w-11/12 sm:p-10 sm:w-[600px] pt-[100px]'>
       <Sheet >
       <h3 className='text-2xl mb-5'>Welcome back <strong>{username}</strong></h3>
       <SheetTrigger className='w-full text-left'>
-      <Card className='mb-5 cursor-pointer'>
+      <Card className='mb-5 cursor-pointer p-5'>
         <CardHeader className='flex flex-row justify-between items-center'>
           <h3 className='font-bold text-xl'>Main Account</h3>
           <WalletMinimal className='w-6'/>

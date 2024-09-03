@@ -47,7 +47,7 @@ const Deposit = () => {
     // navigate('/account')
   }
   return (
-    <Card className="w-full">
+    <Card className="w-full p-5">
     <CardHeader>
       <CardTitle >Deposit</CardTitle>
     </CardHeader>

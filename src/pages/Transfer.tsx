@@ -42,7 +42,7 @@ const Transfer = () => {
     setIsLoading(false)
   }
   return (
-    <Card className="w-full">
+    <Card className="w-full p-5">
     <CardHeader>
       <CardTitle >Transfer</CardTitle>
     </CardHeader>
