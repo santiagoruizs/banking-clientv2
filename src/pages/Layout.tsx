@@ -13,7 +13,7 @@ const Layout = () => {
       setIsLoggedIn(true);
       navigate('/account')
     }else{
-      navigate('/login')
+      navigate('/home')
     }
   }, []);
   return (

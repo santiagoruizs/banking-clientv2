@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Layout from './pages/Layout';
 import { ThemeProvider } from './components/ui/theme-provider';
+import Home from './pages/Home';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       </Route>
       <Route path="/login" element={<Login />}/>
       <Route path="/signup" element={<Signup />}/>
+      <Route path='/home' element={<Home />}/>
     </Route>
 ))
 

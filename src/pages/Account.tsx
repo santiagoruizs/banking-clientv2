@@ -56,7 +56,7 @@ const Account = () => {
         setIsLoggedIn(true)
         getAccountInfo(parsedID)   
       }else{
-        navigate('/login')
+        navigate('/home')
       }
   
     }, [update])
