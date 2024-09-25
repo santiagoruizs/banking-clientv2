@@ -71,7 +71,7 @@ const Login = () => {
   }
   return (
     <div className="flex-auto flex items-center justify-center">
-    <Card className="w-[350px]">
+    <Card className="w-[350px] border-none">
       <CardHeader>
         <CardTitle className="text-center">SR Bank</CardTitle>
         <CardDescription className="text-center">Provide your credentials to log in.</CardDescription>
@@ -94,9 +94,9 @@ const Login = () => {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-center">
+      {/* <CardFooter className="flex justify-center">
         <Link to='/signup'>Create an Account</Link>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
     </div>
   );
