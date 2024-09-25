@@ -1,8 +1,6 @@
-import { Button } from "@/components/ui/button"
+
 import { useState } from "react";
-import CardImg from '../assets/card-image.jpg'
 import { CreditCard } from 'lucide-react';
-import { Link } from "react-router-dom"
 import Login from "./Login"
 import Signup from "./Signup";
 const Home = () => {
