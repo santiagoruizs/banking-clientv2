@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { depositFunds } from '../api/api'
 import { useOutletContext } from 'react-router-dom'
 import { useState } from 'react'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '../components/ui/use-toast'
 import { LoaderCircle } from 'lucide-react';
 
 const Deposit = () => {
