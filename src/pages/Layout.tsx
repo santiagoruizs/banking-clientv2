@@ -1,6 +1,4 @@
 import Header from '@/components/ui/Header'
-import { Toaster } from '@/components/ui/toaster'
-
 import {useState, useEffect} from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
@@ -20,7 +18,6 @@ const Layout = () => {
     <div className='flex flex-col items-center min-h-screen w-screen bg-background text-foreground'>
         <Header isLoggedIn={isLoggedIn}  setIsLoggedIn={setIsLoggedIn}/>
         <Outlet context={{setIsLoggedIn, isLoggedIn}}/>
-        {/* <Toaster /> */}
     </div>
   )
 }
