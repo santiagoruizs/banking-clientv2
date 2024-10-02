@@ -17,6 +17,8 @@ import { LoaderCircle } from 'lucide-react';
 const Signup = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  
+  
   const [confirmPassword, setConfirmPassword] = useState('')
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)

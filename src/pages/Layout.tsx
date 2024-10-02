@@ -20,7 +20,7 @@ const Layout = () => {
     <div className='flex flex-col items-center min-h-screen w-screen bg-background text-foreground'>
         <Header isLoggedIn={isLoggedIn}  setIsLoggedIn={setIsLoggedIn}/>
         <Outlet context={{setIsLoggedIn, isLoggedIn}}/>
-        <Toaster />
+        {/* <Toaster /> */}
     </div>
   )
 }
