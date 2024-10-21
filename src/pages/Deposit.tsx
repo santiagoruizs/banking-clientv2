@@ -14,14 +14,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { DialogClose } from '@radix-ui/react-dialog'
+// import { DialogClose } from '@radix-ui/react-dialog'
 
-const Deposit = () => {
+const Deposit = ({setUpdate}:any) => {
   const [ammount, setAmmount] = useState('')
   const [category, setCategory] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [open, setOpen] = useState(false)
   const { toast } = useToast()
-  const { setUpdate } = useOutletContext<any>()
+  // const { setUpdate } = useOutletContext<any>()
   const navigate = useNavigate()
 
   const handleDeposit = async() => {
@@ -55,10 +56,12 @@ const Deposit = () => {
       })
     }
     setIsLoading(false)
+    setOpen(false)
     navigate('/account')
+
   }
   return (
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger><Plus className='w-10 h-10 m-2 rounded-full border-2 p-1 border-slate-700 cursor-pointer'/></DialogTrigger>
       <DialogContent className='p-10'>
         <DialogHeader>
@@ -70,16 +73,13 @@ const Deposit = () => {
                 <Input id="quantity" placeholder="Quantity" type="number" value={ammount} onChange={(e) => setAmmount(e.target.value)}/>
                 <Input id="category" placeholder="Category" type="text" value={category} onChange={(e) => setCategory(e.target.value)}/>
               </div>
-              <DialogClose asChild>
-              <Button disabled = {ammount === '' || isLoading} onClick={handleDeposit}>
-              {isLoading && <LoaderCircle className="h-4 w-4 mx-2 animate-spin"/>}
-              {!isLoading && "Deposit"}
-              </Button>
-              </DialogClose>
-
-              
-
-          </div>
+              {/* <DialogClose asChild> */}
+                <Button disabled = {ammount === '' || isLoading} onClick={handleDeposit}>
+                {isLoading && <LoaderCircle className="h-4 w-4 mx-2 animate-spin"/>}
+                {!isLoading && "Deposit"}
+                </Button>
+              {/* </DialogClose> */}
+            </div>
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

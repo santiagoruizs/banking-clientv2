@@ -35,6 +35,7 @@ const Account = () => {
     const [username, setUsername] = useState<string | null>('')
     const [account, setAccount] = useState<Account>({balance:0,account_number:''})
     const [transactions, setTransactions] = useState([])
+    const [update, setUpdate] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -61,7 +62,7 @@ const Account = () => {
         navigate('/home')
       }
   
-    }, [])
+    }, [update])
 
   return (
     <div className='w-11/12 sm:px-10 sm:w-[600px] pt-[100px]'>
@@ -87,9 +88,9 @@ const Account = () => {
       </SheetTrigger>
       
       <div className='flex flex-row mb-5 justify-center'>
-      <Deposit />
-      <Widthdraw />
-      <Transfer />
+      <Deposit setUpdate={setUpdate}/>
+      <Widthdraw setUpdate={setUpdate}/>
+      <Transfer setUpdate={setUpdate}/>
       </div>
       {transactions.length > 0 && (<div>
         <h2 className='text-xl font-bold mb-5'>Transactions</h2>

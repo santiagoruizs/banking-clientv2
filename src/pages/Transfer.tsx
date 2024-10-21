@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useOutletContext } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { transferFunds } from '../api/api'
 import { useToast } from '@/components/ui/use-toast'
@@ -12,18 +12,18 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-  DialogClose
+  DialogTrigger
 } from "@/components/ui/dialog"
 
-const Transfer = () => {
+const Transfer = ({setUpdate}:any) => {
   const [ammount, setAmmount] = useState('')
   const [category, setCategory] = useState('')
   const [toAccount, setToAccount] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [open, setOpen] = useState(false)
   const { toast } = useToast()
-  const { setUpdate } = useOutletContext<any>()
-  
+  const navigate = useNavigate()
+
   const handleTransfer = async() => {
     setIsLoading(true)
     const id = localStorage.getItem('userId')||''
@@ -50,10 +50,12 @@ const Transfer = () => {
     }
     
     setIsLoading(false)
+    setOpen(false)
+    navigate('/account')
   }
   return (
 
-  <Dialog>
+  <Dialog open={open} onOpenChange={setOpen}>
   <DialogTrigger><ArrowRight className='w-10 h-10 m-2 rounded-full border-2 p-1 border-slate-700 cursor-pointer'/></DialogTrigger>
   <DialogContent className='p-10'>
     <DialogHeader>
@@ -66,12 +68,12 @@ const Transfer = () => {
             <Input id="category" placeholder="Category" type="text" value={category} onChange={(e) => setCategory(e.target.value)}/>
             <Input id="quantity" placeholder="Quantity" type="number" value={ammount} onChange={(e) => setAmmount(e.target.value)}/>
           </div>
-          <DialogClose asChild>
+          {/* <DialogClose asChild> */}
             <Button disabled = {ammount === '' || toAccount === '' || isLoading} onClick={handleTransfer}>
             {isLoading && <LoaderCircle className="h-4 w-4 mx-2 animate-spin"/>}
             {!isLoading && "Transfer"}
             </Button>
-          </DialogClose>
+          {/* </DialogClose> */}
           
         </div>
       </DialogDescription>

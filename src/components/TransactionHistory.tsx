@@ -33,7 +33,7 @@ const TransactionHistory: React.FC<TransactionsProps> = ({transactions}) => {
       <TableBody >
         {transactions.map(t => {
           let date = new Date(t.date)
-          let formattedDate = date.toLocaleString() 
+          let formattedDate = date.toDateString() 
           return(<TableRow>
                             <TableCell className="font-medium">{formattedDate}</TableCell>
                             <TableCell>{t.type}</TableCell>
