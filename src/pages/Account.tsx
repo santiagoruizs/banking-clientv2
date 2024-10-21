@@ -1,14 +1,13 @@
 
 import { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 // import { useToast } from '@/components/ui/use-toast'
-import { getAccount } from '../api/api'
+import { getAccount, getTransactions } from '../api/api'
 import CountUp from 'react-countup';
 import { WalletMinimal } from 'lucide-react';
-import { Plus } from 'lucide-react';
-import { HandCoins } from 'lucide-react';
-import { ArrowRight } from 'lucide-react';
-import { Link, useOutletContext } from 'react-router-dom';
+
+import Deposit from './Deposit';
+import { useOutletContext } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -24,6 +23,10 @@ import {
 } from "@/components/ui/sheet"
 
 
+import TransactionHistory from '../components/TransactionHistory'
+import Widthdraw from './Widthdraw';
+import Transfer from './Transfer';
+
 type Account = {
   balance: number
   account_number: string
@@ -35,6 +38,7 @@ const Account = () => {
     const [username, setUsername] = useState<string | null>('')
     const [account, setAccount] = useState<Account>({balance:0,account_number:''})
     const [update, setUpdate] = useState(false)
+    const [transactions, setTransactions] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -43,8 +47,12 @@ const Account = () => {
         const response = await getAccount(user_id)
         if(response){
           const data = await response.json()
-          console.log(data);
+         //console.log(data);
           setAccount(data)
+          const transactionsResponse = await getTransactions(data.account_number)
+          const transact = await transactionsResponse?.json()
+          setTransactions(transact)
+          //console.log(transactions)
           setUsername(localStorage.getItem('username'))
         }else{
           console.log('Network Error')
@@ -83,12 +91,16 @@ const Account = () => {
         </CardContent>
       </Card>
       </SheetTrigger>
+      
       <div className='flex flex-row mb-5 justify-center'>
-        <Link to='./deposit'><Plus className='w-10 h-10 m-2 rounded-full border-2 p-1 border-slate-700 cursor-pointer'/></Link>
-        <Link to='./widthdraw'><HandCoins className='w-10 h-10 m-2 rounded-full border-2 p-1 border-slate-700 cursor-pointer'/></Link>
-        <Link to='./transfer'><ArrowRight className='w-10 h-10 m-2 rounded-full border-2 p-1 border-slate-700 cursor-pointer'/></Link>
+      <Deposit />
+      <Widthdraw />
+      <Transfer />
       </div>
-      <Outlet context = {{setUpdate}} />
+      {transactions.length > 0 && (<div>
+        <h2 className='text-xl font-bold mb-5'>Transactions</h2>
+        <TransactionHistory transactions={transactions} />
+      </div>)}
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Account Information</SheetTitle>

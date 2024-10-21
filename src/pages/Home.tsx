@@ -7,7 +7,7 @@ const Home = () => {
   const [loginSignup, setLoginSignup] = useState(false)
   return (
     <div className="w-11/12 flex flex-col items-center justify-center h-screen">
-      <div className="flex flex-row border-[1px] border-secondary justify-center items-center h-3/4 rounded-2xl overflow-hidden">           
+      <div className="flex flex-row border-[1px] border-secondary justify-center items-center h-auto lg:h-3/4 rounded-2xl overflow-hidden">           
           <div className="w-1/2 hidden lg:flex lg:flex-col items-center justify-center border-r-[1px] border-secondary h-full relative overflow-hidden bg-[#18181B]">
               <div className="relative z-10  flex flex-col items-center justify-start w-full h-full text-white">
                 <div className="text-left flex w-full font-bold p-5 items-center"><CreditCard className="w-5 h-5 mr-1"/><p className="">SRBank</p></div>

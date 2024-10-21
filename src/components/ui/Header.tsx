@@ -37,11 +37,9 @@ const Header: React.FC<HeaderProps> = ({isLoggedIn,setIsLoggedIn}) => {
         <Menubar className='rounded-full border-none'>
           <MenubarMenu>
             <MenubarTrigger className='rounded-full border-none m-0 p-0'><CircleUserRound className='h-[1.5rem] w-[1.5rem] cursor-pointer m-0'/></MenubarTrigger>
-            <MenubarContent>
-              {!isLoggedIn && <Link to='/login'><MenubarItem >LogIn</MenubarItem></Link>}
-              {isLoggedIn &&<MenubarItem onClick={handleLogOut}>LogOut</MenubarItem>}
-              {!isLoggedIn && <Link to='/signup'><MenubarItem>SignIn</MenubarItem></Link>}
-            </MenubarContent>
+           {isLoggedIn &&( <MenubarContent>
+              <MenubarItem onClick={handleLogOut}>LogOut</MenubarItem>
+            </MenubarContent>)}
           </MenubarMenu>
         </Menubar>
         

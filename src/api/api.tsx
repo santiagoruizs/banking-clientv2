@@ -125,3 +125,22 @@ export const transferFunds = async (id:number, toAccountNumber:string, ammount:n
         console.error('Error:', error);
     }
 }
+
+export const getTransactions = async (AccountNumber:string) => {
+
+    console.log("Getting Transactions from account :", AccountNumber);
+
+    try {
+        const response = await fetch(import.meta.env.VITE_API_URL +'/transactions/'+AccountNumber,
+        {
+            method : 'GET',
+            headers : {
+            'Content-Type': 'application/json',
+            }
+        })
+
+        return response
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
