@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { depositFunds } from '../api/api'
-import { useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { useState } from 'react'
 import { useToast } from '../components/ui/use-toast'
 import { LoaderCircle } from 'lucide-react';
@@ -22,7 +22,8 @@ const Deposit = () => {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
   const { setUpdate } = useOutletContext<any>()
-  
+  const navigate = useNavigate()
+
   const handleDeposit = async() => {
     setIsLoading(true)
     const id:string|null = localStorage.getItem('userId')||''
@@ -54,7 +55,7 @@ const Deposit = () => {
       })
     }
     setIsLoading(false)
-    // navigate('/account')
+    navigate('/account')
   }
   return (
       <Dialog>

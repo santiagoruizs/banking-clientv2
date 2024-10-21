@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-// import { useToast } from '@/components/ui/use-toast'
 import { getAccount, getTransactions } from '../api/api'
 import CountUp from 'react-countup';
 import { WalletMinimal } from 'lucide-react';
@@ -32,12 +31,9 @@ type Account = {
   account_number: string
 }
 const Account = () => {
-    // const { toast } = useToast()
-    // const location = useLocation()
     const {setIsLoggedIn} = useOutletContext<any>();
     const [username, setUsername] = useState<string | null>('')
     const [account, setAccount] = useState<Account>({balance:0,account_number:''})
-    const [update, setUpdate] = useState(false)
     const [transactions, setTransactions] = useState([])
     const navigate = useNavigate()
 
@@ -47,12 +43,10 @@ const Account = () => {
         const response = await getAccount(user_id)
         if(response){
           const data = await response.json()
-         //console.log(data);
           setAccount(data)
           const transactionsResponse = await getTransactions(data.account_number)
           const transact = await transactionsResponse?.json()
           setTransactions(transact)
-          //console.log(transactions)
           setUsername(localStorage.getItem('username'))
         }else{
           console.log('Network Error')
@@ -67,7 +61,7 @@ const Account = () => {
         navigate('/home')
       }
   
-    }, [update])
+    }, [])
 
   return (
     <div className='w-11/12 sm:px-10 sm:w-[600px] pt-[100px]'>

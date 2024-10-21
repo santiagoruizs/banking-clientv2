@@ -1,5 +1,5 @@
 import { widthdrawFunds } from '../api/api'
-import { useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -22,7 +22,8 @@ const Widthdraw = () => {
   const [isLoading, setIsLoading] = useState(false)
   const { setUpdate } = useOutletContext<any>()
   const { toast } = useToast()
-
+  const navigate = useNavigate()
+  
   const handleWidthdrawFunds = async() => {
     setIsLoading(true)
     const id = localStorage.getItem('userId')||''
@@ -53,6 +54,7 @@ const Widthdraw = () => {
       })
     }
     setIsLoading(false)
+    navigate('/account')
 
   }
   return (
