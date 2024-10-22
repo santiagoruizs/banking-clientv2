@@ -8,7 +8,7 @@ Use the npm package manager to install.
 npm install
 ```
 ## Usage
-To use you need to set up your the backend and Database as in this Repository [Link](https://github.com/santiagoruizs/bankingAPI).
+To use you need to set up your the backend and Database as in this [Repository](https://github.com/santiagoruizs/bankingAPI).
 
 And the API .env variable, IE:
 
